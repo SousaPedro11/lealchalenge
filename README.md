@@ -24,11 +24,11 @@ Repositório para armazenamento e exposição de resultados da tarefa.
 
 ## Aplicação em execução (Heroku)
     
-    A inda falta ser implementado as funcionalidades. Não pretendo trabalhar muito no front-end, se eu tiver
-    um tempo posso poersonalizar mais.
+A inda falta ser implementado as funcionalidades. Não pretendo trabalhar muito no front-end, se eu tiver
+um tempo posso poersonalizar mais.
     
-    Link: [lealchalenge](https://lealchalenge.herokuapp.com/)
+Link: [lealchalenge](https://lealchalenge.herokuapp.com/)
     
 ## Dockerizar
 
-    Ainda vou dockerizar essa aplicação, mas somente após a finalização dela.
+Ainda vou dockerizar essa aplicação, mas somente após a finalização dela.

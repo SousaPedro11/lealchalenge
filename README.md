@@ -22,13 +22,13 @@ Repositório para armazenamento e exposição de resultados da tarefa.
         gunicorn --workers=5 --bind=0.0.0.0:5000 --access-logfile - --error-logfile - 'run:app'
         ```
 
-* Aplicação em execução (Heroku)
+## Aplicação em execução (Heroku)
     
     A inda falta ser implementado as funcionalidades. Não pretendo trabalhar muito no front-end, se eu tiver
     um tempo posso poersonalizar mais.
     
     Link: [lealchalenge](https://lealchalenge.herokuapp.com/)
     
-* Dockerizar
+## Dockerizar
 
     Ainda vou dockerizar essa aplicação, mas somente após a finalização dela.

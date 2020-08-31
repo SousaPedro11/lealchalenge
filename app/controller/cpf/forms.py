@@ -10,6 +10,5 @@ class CPFForm(FlaskForm):
     submit = SubmitField('Processar')
 
     def validate_string(self, string):
-        print(string.data)
         if not bool(re.match(r"^(\d{3}.){2}\d{3}-\d{2}$|^\d{11}$", string.data)):
             raise StopValidation('Invalid format!')

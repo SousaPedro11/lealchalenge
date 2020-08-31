@@ -10,6 +10,6 @@ def validador():
     form = CPFForm()
     retorno = ''
     if form.validate_on_submit():
-        retorno = 'CPF válido' if validar(form.string.data) else 'CPF Inválido'
+        retorno = validar(form.string.data)
 
     return render_template('cpf.html', form=form, retorno=retorno)

@@ -1,4 +1,21 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 {% block title %}
     {{ super() }} - Troca CEP
+{% endblock %}
+{% block content %}
+    <h1>Troca String</h1>
+    <h2>Situação Problema</h2>
+    <p>
+        Implementar um código que aceite uma String como entrada. Processe essa etrada
+        capturando somente números e apresente-os de forma invertida.
+    </p>
+    {{ wtf.quick_form(form) }}
+    <br>
+    <form action="" method="get">
+        <label for="troca">Processamento com slice</label><br>
+        <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
+        <label for="troca_regex">Processamento com regex</label><br>
+        <input type="text" name="troca_regex" id="troca_regex" value="{{ retorno_regex }}" disabled><br>
+    </form>
 {% endblock %}

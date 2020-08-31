@@ -14,14 +14,17 @@
         {{ form.hidden_tag() }}
         {{ form.string.label }}<br>
         {{ form.string }}<br>
+        {% for error in form.string.errors %}
+            <span class="alert-info">{{ error }}</span>
+        {% endfor %}
         {{ form.submit }}<br>
     </form>
     <br>
-    <form action="" method="get"></form>
-    <label for="troca">Processamento com slice</label><br>
-    <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
-    <label for="troca_regex">Processamento com regex</label><br>
-    <input type="text" name="troca_regex" id="troca_regex" value="{{ retorno_regex }}" disabled><br>
+    <form action="" method="get">
+        <label for="troca">Processamento com slice</label><br>
+        <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
+        <label for="troca_regex">Processamento com regex</label><br>
+        <input type="text" name="troca_regex" id="troca_regex" value="{{ retorno_regex }}" disabled><br>
     </form>
     <br>
     <a href="{{ url_for('challenge_bp.home') }}">

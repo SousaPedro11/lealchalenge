@@ -13,10 +13,13 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         {{ form.string.label }}<br>
-        {{ form.string }}<br>
-        {% for error in form.string.errors %}
-            <span class="alert-danger">{{ error }}</span><br>
-        {% endfor %}
+        {{ form.string(id='entrada') }}<br>
+{#        {% for error in form.string.errors %}#}
+{#            {{ valid_format(erro) }}#}
+{#        {% endfor %}#}
+        {% if form.string.errors.__len__() > 0 %}
+            <span class="alert-danger"></span>
+        {% endif %}
         {{ form.submit }}<br>
     </form>
     <br>
@@ -29,4 +32,9 @@
     <a href="{{ url_for('challenge_bp.home') }}">
         <button type="button"><< Voltar</button>
     </a>
+
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/cpf.js') }}"></script>
 {% endblock %}

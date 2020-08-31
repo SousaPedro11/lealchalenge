@@ -14,9 +14,6 @@
         {{ form.hidden_tag() }}
         {{ form.string.label }}<br>
         {{ form.string(id='entrada') }}<br>
-{#        {% for error in form.string.errors %}#}
-{#            {{ valid_format(erro) }}#}
-{#        {% endfor %}#}
         {% if form.string.errors.__len__() > 0 %}
             <span class="alert-danger"></span>
         {% endif %}

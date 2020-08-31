@@ -8,7 +8,7 @@ from .cpf_validator import validar
 @cpf_bp.route('/cpf/', methods=['GET', 'POST'])
 def validador():
     form = CPFForm()
-    retorno = ''
+    retorno = form.string.data
     if form.validate_on_submit():
         retorno = validar(form.string.data)
 

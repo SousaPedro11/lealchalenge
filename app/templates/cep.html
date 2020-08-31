@@ -4,18 +4,28 @@
     {{ super() }} - Troca CEP
 {% endblock %}
 {% block content %}
-    <h1>Troca String</h1>
-    <h2>Situação Problema</h2>
+    <h1>Situação Problema</h1>
     <p>
-        Implementar um código que aceite uma String como entrada. Processe essa etrada
-        capturando somente números e apresente-os de forma invertida.
+        Implementar um código que aceite uma String como entrada.
+        Processe essa entrada capturando somente números e apresente-os
+        de forma invertida.
     </p>
-    {{ wtf.quick_form(form) }}
-    <br>
-    <form action="" method="get">
-        <label for="troca">Processamento com slice</label><br>
-        <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
-        <label for="troca_regex">Processamento com regex</label><br>
-        <input type="text" name="troca_regex" id="troca_regex" value="{{ retorno_regex }}" disabled><br>
+
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.string.label }}<br>
+        {{ form.string }}<br>
+        {{ form.submit }}<br>
     </form>
+    <br>
+    <form action="" method="get"></form>
+    <label for="troca">Processamento com slice</label><br>
+    <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
+    <label for="troca_regex">Processamento com regex</label><br>
+    <input type="text" name="troca_regex" id="troca_regex" value="{{ retorno_regex }}" disabled><br>
+    </form>
+    <br>
+    <a href="{{ url_for('challenge_bp.home') }}">
+        <button type="button"><< Voltar</button>
+    </a>
 {% endblock %}

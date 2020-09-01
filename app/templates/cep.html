@@ -13,10 +13,7 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         {{ form.string.label }}<br>
-        {{ form.string }}<br>
-        {% for error in form.string.errors %}
-            <span class="alert-info">{{ error }}</span>
-        {% endfor %}
+        {{ form.string(id='entrada') }}<br>
         {{ form.submit }}<br>
     </form>
     <br>
@@ -30,4 +27,8 @@
     <a href="{{ url_for('challenge_bp.home') }}">
         <button type="button"><< Voltar</button>
     </a>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/cep.js') }}"></script>
 {% endblock %}

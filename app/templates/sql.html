@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ super() }} - DML
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dracula.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/db.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="code">
+        <h2>DDL</h2>
+        <pre><code class="sql hjls">{{ ddl }}</code></pre>
+        <h2>DML</h2>
+        <pre><code class="sql hjls">{{ dml }}</code></pre>
+        <h2>DQL</h2>
+        <pre><code class="sql hjls">{{ dql }}</code></pre>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

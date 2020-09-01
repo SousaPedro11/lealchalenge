@@ -1,6 +1,7 @@
 const input = document.getElementById('entrada');
 const button = document.getElementById('submit');
 
+button.disabled = true;
 input.onkeyup = function () {
     input.style.color = "black";
     button.disabled = true;

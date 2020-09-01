@@ -21,12 +21,9 @@
     </form>
     <br>
 
-    <form action="" method="get">
-        <label for="troca">Resultado</label><br>
+    {% block form %}
+    {% endblock %}
 
-        <input type="text" name="troca" id="troca" value="{{ retorno }}" disabled><br>
-    </form>
-    <br>
     <a href="{{ url_for('challenge_bp.home') }}">
         <button type="button"><< Voltar</button>
     </a>

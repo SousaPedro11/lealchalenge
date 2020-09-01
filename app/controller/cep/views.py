@@ -10,7 +10,7 @@ def cep():
     retorno = ''
     retorno_regex = ''
     form = CEPForm()
-    if form.validate_on_submit():
+    if form.is_submitted():
         string = form.string.data
         retorno = validar(string)
         retorno_regex = validar_regex(string)

@@ -11,5 +11,4 @@ def validador():
     retorno = ''
     if form.is_submitted():
         retorno = validar(form.string.data)
-        # return render_template('cpf_retorno.html', form=form, retorno=retorno)
     return render_template('cpf.html', form=form, retorno=retorno)

@@ -14,8 +14,8 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         {{ form.string.label }}<br>
-{#        {{ form.string(id='entrada') }}<br>#}
-        {{ wtf.form_field(form.string, id='entrada') }}
+        {{ form.string(id='entrada', class='form-control') }}<br>
+{#        {{ wtf.form_field(form.string, id='entrada') }}#}
         {{ form.submit }}<br>
     </form>
     <br>

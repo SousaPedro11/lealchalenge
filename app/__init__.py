@@ -8,12 +8,19 @@ from app.controller.cpf import cpf_bp
 from app.controller.endereco import endereco_bp
 from config import Config
 
-app = Flask(__name__)
-app.config.from_object(Config)
-Bootstrap(app=app)
-db = SQLAlchemy(app=app)
+db = SQLAlchemy()
 
-app.register_blueprint(cep_bp)
-app.register_blueprint(challenge_bp)
-app.register_blueprint(cpf_bp)
-app.register_blueprint(endereco_bp)
+
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    Bootstrap(app=app)
+
+    app.register_blueprint(cep_bp)
+    app.register_blueprint(challenge_bp)
+    app.register_blueprint(cpf_bp)
+    app.register_blueprint(endereco_bp)
+
+    db.init_app(app=app)
+
+    return app

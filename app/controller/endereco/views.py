@@ -14,5 +14,7 @@ def database():
         ddl = '\n'.join([i.replace('\n', '') for i in f.readlines()])
     with open('app/sql/DML.sql') as f:
         dml = '\n'.join([i.replace('\n', '') for i in f.readlines()])
+    with open('app/sql/DQL.sql') as f:
+        dql = '\n'.join([i.replace('\n', '') for i in f.readlines()])
 
-    return render_template('sql.html', ddl=ddl, dml=dml, dql='dql')
+    return render_template('sql.html', ddl=ddl, dml=dml, dql=dql)

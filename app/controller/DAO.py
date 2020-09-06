@@ -1,10 +1,13 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
+
+root_db = SQLAlchemy(session_options={'autoflush': False})
 
 
 def transacao(objeto):
-    db.session.add(objeto)
-    db.session.commit()
-    db.session.close()
+    local_object = root_db.session.merge(objeto)
+    root_db.session.add(local_object)
+    root_db.session.commit()
+    root_db.session.close()
 
 
 def buscar_por_criterio(table, **filtros):
@@ -32,6 +35,6 @@ def buscar_todos_por_criterio(table, **filtros):
 
 
 def deletar(objeto):
-    db.session.delete(objeto)
-    db.session.commit()
-    db.session.close()
+    root_db.session.delete(objeto)
+    root_db.session.commit()
+    root_db.session.close()

@@ -4,8 +4,8 @@ from app.controller.endereco import endereco_bp
 
 
 @endereco_bp.route('/enderecos/', methods=['GET', 'POST', 'UPDATE', 'DELETE'])
-def enderecos():
-    pass
+def home():
+    return render_template('endereco_home.html')
 
 
 @endereco_bp.route('/database/')

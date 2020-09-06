@@ -3,13 +3,13 @@
 CREATE TABLE IF NOT EXISTS public.pais(
     pkey VARCHAR(36) PRIMARY KEY NOT NULL,
     tx_nome VARCHAR(80) NOT NULL,
-    sigla VARCHAR(2) NOT NULL
+    tx_sigla VARCHAR(2) NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS public.estado(
     pkey VARCHAR(36) PRIMARY KEY NOT NULL,
     tx_nome VARCHAR(80) NOT NULL,
-    sigla VARCHAR(3) NOT NULL,
+    tx_sigla VARCHAR(3),
     fk_pais VARCHAR(36) NOT NULL,
     CONSTRAINT ak_estado UNIQUE (tx_nome, fk_pais)
 );

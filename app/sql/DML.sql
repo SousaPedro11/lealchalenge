@@ -1,4 +1,4 @@
-INSERT INTO public.pais(pkey, tx_nome, sigla) VALUES
+INSERT INTO public.pais(pkey, tx_nome, tx_sigla) VALUES
 ('d07582f5-e2ab-4e00-b1fc-9718e6da20c8', 'ALEMANHA', 'DE'),
 ('df6c7751-d664-4669-8cbb-c9b4e82f5f34', 'CHINA', 'CN'),
 ('d79771ed-8ff9-4451-abc5-85310b25b4a4', 'ESPANHA', 'ES'),
@@ -6,7 +6,7 @@ INSERT INTO public.pais(pkey, tx_nome, sigla) VALUES
 ('26ecf951-749f-458d-8a0b-e8b0fd40fdd4', 'BRASIL', 'BR')
 ;
 
-INSERT INTO public.estado(pkey, tx_nome, sigla, fk_pais) VALUES
+INSERT INTO public.estado(pkey, tx_nome, tx_sigla, fk_pais) VALUES
 ('a0164ffa-1ade-4c66-9bff-b17b480612b8', 'BAHIA', 'BA', '26ecf951-749f-458d-8a0b-e8b0fd40fdd4'),
 ('089a30b2-50e3-4e71-90f5-88259c78defb', 'PARA', 'PA', '26ecf951-749f-458d-8a0b-e8b0fd40fdd4'),
 ('4f0bbc8b-5397-40c8-8434-85c3856ce2e9', 'TEXAS', 'TX', '971bd72c-4770-4018-ad9e-d0115e59a805'),
@@ -37,7 +37,7 @@ INSERT INTO public.rua(pkey, tx_nome, tx_cep, fk_bairro) VALUES
 ;
 
 INSERT INTO public.endereco(pkey, tx_numero, tx_complemento, fk_rua) VALUES
-('e56a0144-a9ee-4e1c-a16f-76f4e5b770e8', '', 'KM 6', 'aeb03145-10c7-4bb1-89ff-9aca9dd3e008'),
+('e56a0144-a9ee-4e1c-a16f-76f4e5b770e8', 'S/N', 'KM 6', 'aeb03145-10c7-4bb1-89ff-9aca9dd3e008'),
 ('76ba4d99-0c67-44af-8710-5529ba2eb5a6', '650', '', 'cab7545f-625d-4473-afa1-9aeba46a406a'),
 ('08682890-4c3a-4255-967b-e8e77659b8cf', '45', '', '8ffc3a88-99cf-4d81-8ada-89c35a7b0769')
 ;

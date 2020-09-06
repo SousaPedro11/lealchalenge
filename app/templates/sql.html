@@ -32,9 +32,13 @@
         <h2>DQL</h2>
         <pre><code class="sql hjls">{{ dql }}</code></pre>
     </div>
+    <a href="{{ url_for('challenge_bp.home') }}">
+        <button id="home" type="button"><< Voltar</button>
+    </a>
 {% endblock %}
+
 {% block scripts %}
     {{ super() }}
     <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="{{ url_for('static', filename='js/sql.js') }}"></script>
 {% endblock %}

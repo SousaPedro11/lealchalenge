@@ -1,6 +1,9 @@
 {% extends 'endereco_home.html' %}
+{% block title %}
+    Leal Challenge - Cadastro de {{ objeto.capitalize() }}
+{% endblock %}
 {% block content %}
-    <h1>Cadastro {{ objeto.capitalize() }}</h1>
+    <h1>Cadastro de {{ objeto.capitalize() }}</h1>
     {% block tabela %}
         <table class="table table-bordered">
             {% if table|length > 0 %}
@@ -30,10 +33,11 @@
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}
-                    <td>
-                        <a href="{{ url_for('endereco_bp.editar', objeto=foo.__class__.__name__.lower(), id=foo.pkey) }}" class="fa fa-pencil glyphicon glyphicon-pencil"></a>
-                        <a href="#" class="fa fa-trash glyphicon glyphicon-trash"></a>
-                    </td>
+                        <td>
+                            <a href="{{ url_for('endereco_bp.editar', objeto=foo.__class__.__name__.lower(), id=foo.pkey) }}"
+                               class="fa fa-pencil glyphicon glyphicon-pencil"></a>
+                            <a href="#" class="fa fa-trash glyphicon glyphicon-trash"></a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -43,4 +47,9 @@
             {% endif %}
         </table>
     {% endblock %}
+    <div class="btn-group">
+        <button href="#" class="btn-primary" type="button">
+            <a style="text-decoration: none; color: black" class="btn-link" href="#">Novo</a>
+        </button>
+    </div>
 {% endblock %}

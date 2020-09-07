@@ -101,3 +101,25 @@ def deletar(objeto, id):
             flash(f'{registro} removido com sucesso!')
             return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
     return render_template('endereco_deletar.html', registro=registro, objeto=objeto)
+
+
+@endereco_bp.route('/endereco/cadastrar/<objeto>/novo/', methods=['GET', 'POST'])
+def cadastro_novo(objeto):
+    string = objeto.capitalize()
+    clazz = globals()[string]
+    if string == 'Pais':
+        clazz = Pais('', '')
+    elif string == 'Estado':
+        clazz = Estado('')
+    elif string == 'Cidade':
+        clazz = Cidade('')
+    elif string == 'Bairro':
+        clazz = Bairro('')
+    elif string == 'Rua':
+        clazz = Rua('', '')
+    elif string == 'Endereco':
+        clazz = Endereco()
+
+    if request.method == 'POST':
+        return redirect(url_for('enderco_bp.cadastro', objeto=objeto))
+    return render_template('endereco_cadastro_novo.html', objeto=objeto, clazz=clazz)

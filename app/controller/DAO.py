@@ -34,8 +34,6 @@ def buscar_todos_por_criterio(table, **filtros):
     return table.query.filter_by(**filtros).all()
 
 
-# tabela = Estado.query.join(Pais).filter(Estado.fk_pais == Pais.pkey).order_by(Pais.tx_nome, Estado.tx_nome,
-#                                                                               Estado.tx_sigla).all()
 def buscar_todos_por_join(table1, table2, *order_by, **filtro):
     return table1.query.join(table2).filter(**filtro).order_by(*order_by).all()
 

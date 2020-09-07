@@ -82,3 +82,22 @@ def editar(objeto, id):
             flash('Alterações efetuadas com sucesso!')
         return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
     return render_template('endereco_editar.html', registro=registro, registro_pai=registro_pai, objeto=objeto)
+
+
+@endereco_bp.route('/endereco/deletar/<objeto>/<id>/', methods=['GET', 'POST'])
+def deletar(objeto, id):
+    string = objeto.capitalize()
+    registro = DAO.buscar_por_criterio(globals()[string], pkey=id)
+    has_child = False
+    for v in registro.__mapper__.relationships.values():
+        if v.back_populates == objeto:
+            has_child = len(getattr(registro, v.key)) > 0
+    if has_child:
+        flash(f'{registro} possui dependentes. Não pode ser excluído!')
+        return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
+    else:
+        if request.method == 'POST':
+            DAO.deletar(registro)
+            flash(f'{registro} removido com sucesso!')
+            return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
+    return render_template('endereco_deletar.html', registro=registro, objeto=objeto)

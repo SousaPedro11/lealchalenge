@@ -36,27 +36,27 @@ def __endereco__():
     if not bahia:
         bahia = models.Estado('bahia')
         bahia.tx_sigla = 'ba'
-        bahia.pais = brasil
+        bahia.fk_pais = brasil.pkey
         DAO.transacao(bahia)
     if not para:
         para = models.Estado('para')
         para.tx_sigla = 'pa'
-        para.pais = brasil
+        para.fk_pais = brasil.pkey
         DAO.transacao(para)
     if not texas:
         texas = models.Estado('texas')
         texas.tx_sigla = 'tx'
-        texas.pais = estados_unidos
+        texas.fk_pais = estados_unidos.pkey
         DAO.transacao(texas)
     if not baviera:
         baviera = models.Estado('baviera')
         baviera.tx_sigla = 'by'
-        baviera.pais = alemanha
+        baviera.fk_pais = alemanha.pkey
         DAO.transacao(baviera)
     if not guizhou:
         guizhou = models.Estado('guizhou')
         guizhou.tx_sigla = 'gz'
-        guizhou.pais = china
+        guizhou.fk_pais = china.pkey
         DAO.transacao(china)
 
     # CIDADES
@@ -68,23 +68,23 @@ def __endereco__():
 
     if not belem:
         belem = models.Cidade('belem')
-        belem.estado = para
+        belem.fk_estado = para.pkey
         DAO.transacao(belem)
     if not ananindeua:
         ananindeua = models.Cidade('ananindeua')
-        ananindeua.estado = para
+        ananindeua.fk_estado = para.pkey
         DAO.transacao(ananindeua)
     if not salvador:
         salvador = models.Cidade('salvador')
-        salvador.estado = bahia
+        salvador.fk_estado = bahia.pkey
         DAO.transacao(salvador)
     if not austin:
         austin = models.Cidade('austin')
-        austin.estado = texas
+        austin.fk_estado = texas.pkey
         DAO.transacao(austin)
     if not marituba:
         marituba = models.Cidade('marituba')
-        marituba.estado = para
+        marituba.fk_estado = para.pkey
         DAO.transacao(marituba)
 
     # BAIRROS
@@ -96,23 +96,23 @@ def __endereco__():
 
     if not aguas_brancas:
         aguas_brancas = models.Bairro('aguas brancas')
-        aguas_brancas.cidade = ananindeua
+        aguas_brancas.fk_cidade = ananindeua.pkey
         DAO.transacao(aguas_brancas)
     if not montese:
         montese = models.Bairro('montese')
-        montese.cidade = belem
+        montese.fk_cidade = belem.pkey
         DAO.transacao(montese)
     if not canudos:
         canudos = models.Bairro('canudos')
-        canudos.cidade = belem
+        canudos.fk_cidade = belem.pkey
         DAO.transacao(canudos)
     if not levilandia:
         levilandia = models.Bairro('levilandia')
-        levilandia.cidade = ananindeua
+        levilandia.fk_cidade = ananindeua.pkey
         DAO.transacao(levilandia)
     if not parque_verde:
         parque_verde = models.Bairro('parque verde')
-        parque_verde.cidade = marituba
+        parque_verde.fk_cidade = marituba.pkey
         DAO.transacao(parque_verde)
 
     # RUAS
@@ -124,15 +124,15 @@ def __endereco__():
 
     if not dois_de_junho_bel:
         dois_de_junho_bel = models.Rua('dois de junho', '66077150')
-        dois_de_junho_bel.bairro = montese
+        dois_de_junho_bel.fk_bairro = montese.pkey
         DAO.transacao(dois_de_junho_bel)
     if not dois_de_junho_an:
         dois_de_junho_an = models.Rua('dois de junho', '67033060')
-        dois_de_junho_an.bairro = aguas_brancas
+        dois_de_junho_an.fk_bairro = aguas_brancas.pkey
         DAO.transacao(dois_de_junho_an)
     if not br316:
         br316 = models.Rua('BR 316', '67030010')
-        br316.bairro = levilandia
+        br316.fk_bairro = levilandia.pkey
         DAO.transacao(br316)
 
     # ENDERECOS
@@ -143,17 +143,17 @@ def __endereco__():
     if not lv_br:
         lv_br = models.Endereco()
         lv_br.tx_complemento = 'km 6'
-        lv_br.rua = br316
+        lv_br.fk_rua = br316.pkey
         DAO.transacao(lv_br)
     if not ddj:
         ddj = models.Endereco()
         ddj.tx_numero = '650'
-        ddj.rua = dois_de_junho_an
+        ddj.fk_rua = dois_de_junho_an.pkey
         DAO.transacao(ddj)
     if not ddj2:
         ddj2 = models.Endereco()
         ddj2.tx_numero = '45'
-        ddj2.rua = dois_de_junho_bel
+        ddj2.fk_rua = dois_de_junho_bel.pkey
         DAO.transacao(ddj2)
 
 

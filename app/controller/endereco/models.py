@@ -1,7 +1,7 @@
 from sqlalchemy import UniqueConstraint
 from sqlalchemy.orm import backref, validates
 
-from app.controller import Util
+from app.controller import Util, DAO
 from app.controller.endereco import db
 
 
@@ -21,11 +21,19 @@ class Pais(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_nome': self.tx_nome,
-            'tx_sigla': self.tx_sigla
-        }
+        return [
+            {'Nome': self.tx_nome},
+            {'Sigla': self.tx_sigla}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Nome': 'tx_nome', 'Sigla': 'tx_sigla'}
+
+    def __repr__(self):
+        return f'{self.tx_nome} - {self.tx_sigla}'
 
 
 class Estado(db.Model):
@@ -52,12 +60,20 @@ class Estado(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_nome': self.tx_nome,
-            'tx_sigla': self.tx_sigla,
-            'pais': self.pais
-        }
+        return [
+            {'Nome': self.tx_nome},
+            {'Sigla': self.tx_sigla},
+            {'Pais': DAO.buscar_por_criterio(Pais, pkey=self.fk_pais)}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Nome': 'tx_nome', 'Sigla': 'tx_sigla', 'Pais': 'Pais'}
+
+    def __repr__(self):
+        return f'{self.tx_nome} - {self.tx_sigla}'
 
 
 class Cidade(db.Model):
@@ -83,11 +99,19 @@ class Cidade(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_nome': self.tx_nome,
-            'estado': self.estado
-        }
+        return [
+            {'Nome': self.tx_nome},
+            {'Estado': DAO.buscar_por_criterio(Estado, pkey=self.fk_estado)}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Nome': 'tx_nome', 'Estado': 'Estado'}
+
+    def __repr__(self):
+        return f'{self.tx_nome} - {self.estado.tx_sigla}'
 
 
 class Bairro(db.Model):
@@ -113,11 +137,19 @@ class Bairro(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_nome': self.tx_nome,
-            'cidade': self.cidade
-        }
+        return [
+            {'Nome': self.tx_nome},
+            {'Cidade': DAO.buscar_por_criterio(Cidade, pkey=self.fk_cidade)}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Nome': 'tx_nome', 'Cidade': 'Cidade'}
+
+    def __repr__(self):
+        return f'{self.tx_nome} - {self.cidade.tx_nome}/{self.cidade.estado.tx_sigla}'
 
 
 class Rua(db.Model):
@@ -145,12 +177,20 @@ class Rua(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_nome': self.tx_nome,
-            'tx_cep': self.tx_cep,
-            'bairro': self.bairro
-        }
+        return [
+            {'Nome': self.tx_nome},
+            {'Cep': self.tx_cep},
+            {'Bairro': DAO.buscar_por_criterio(Bairro, pkey=self.fk_bairro)}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Nome': 'tx_nome', 'Cep': 'tx_cep', 'Bairro': 'Bairro'}
+
+    def __repr__(self):
+        return f'{self.tx_nome} - {self.bairro.tx_nome} - {self.bairro.cidade.tx_nome}/{self.bairro.cidade.estado.tx_sigla}'
 
 
 class Endereco(db.Model):
@@ -176,9 +216,14 @@ class Endereco(db.Model):
     def convert_upper(self, key, value):
         return value.upper()
 
+    @property
     def __dict_class__(self):
-        return {
-            'tx_numero': self.tx_numero,
-            'tx_complemento': self.tx_complemento,
-            'rua': self.rua
-        }
+        return [
+            {'Número': self.tx_numero},
+            {'Complemento': self.tx_complemento},
+            {'Rua': DAO.buscar_por_criterio(Rua, pkey=self.fk_rua)}
+        ]
+
+    @property
+    def dict_fieldname(self):
+        return {'Número': 'tx_numero', 'Complemento': 'tx_complemento', 'Rua': 'Rua'}

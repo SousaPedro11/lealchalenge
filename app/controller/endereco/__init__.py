@@ -5,4 +5,4 @@ endereco_bp = Blueprint('endereco_bp', __name__)
 
 db = SQLAlchemy()
 
-from . import views, populate
+from . import views

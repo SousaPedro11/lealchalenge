@@ -157,6 +157,6 @@ def __endereco__():
         DAO.transacao(ddj2)
 
 
-@endereco_bp.before_app_first_request
-def seed():
-    __endereco__()
+# @endereco_bp.before_app_first_request
+# def seed():
+#     __endereco__()

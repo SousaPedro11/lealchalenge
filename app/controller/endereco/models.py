@@ -70,7 +70,7 @@ class Estado(db.Model):
 
     @property
     def dict_fieldname(self):
-        return {'Nome': 'tx_nome', 'Sigla': 'tx_sigla', 'Pais': 'Pais'}
+        return {'Nome': 'tx_nome', 'Sigla': 'tx_sigla', 'Pais': 'fk_pais'}
 
     def __repr__(self):
         return f'{self.tx_nome} - {self.tx_sigla}'
@@ -108,7 +108,7 @@ class Cidade(db.Model):
 
     @property
     def dict_fieldname(self):
-        return {'Nome': 'tx_nome', 'Estado': 'Estado'}
+        return {'Nome': 'tx_nome', 'Estado': 'fk_estado'}
 
     def __repr__(self):
         return f'{self.tx_nome} - {self.estado.tx_sigla}'
@@ -146,7 +146,7 @@ class Bairro(db.Model):
 
     @property
     def dict_fieldname(self):
-        return {'Nome': 'tx_nome', 'Cidade': 'Cidade'}
+        return {'Nome': 'tx_nome', 'Cidade': 'fk_cidade'}
 
     def __repr__(self):
         return f'{self.tx_nome} - {self.cidade.tx_nome}/{self.cidade.estado.tx_sigla}'
@@ -187,7 +187,7 @@ class Rua(db.Model):
 
     @property
     def dict_fieldname(self):
-        return {'Nome': 'tx_nome', 'Cep': 'tx_cep', 'Bairro': 'Bairro'}
+        return {'Nome': 'tx_nome', 'Cep': 'tx_cep', 'Bairro': 'fk_bairro'}
 
     def __repr__(self):
         return f'{self.tx_nome} - {self.bairro.tx_nome} - {self.bairro.cidade.tx_nome}/{self.bairro.cidade.estado.tx_sigla}'
@@ -226,4 +226,4 @@ class Endereco(db.Model):
 
     @property
     def dict_fieldname(self):
-        return {'Número': 'tx_numero', 'Complemento': 'tx_complemento', 'Rua': 'Rua'}
+        return {'Número': 'tx_numero', 'Complemento': 'tx_complemento', 'Rua': 'fk_rua'}

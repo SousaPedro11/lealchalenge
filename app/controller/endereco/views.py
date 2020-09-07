@@ -46,16 +46,15 @@ def cadastro(objeto, tabela=None, tabela2=None):
         if objeto == 'pais':
             tabela2 = Pais('', '')
         elif objeto == 'estado':
-            tabela = Estado('')
+            tabela2 = Estado('')
         elif objeto == 'cidade':
-            tabela = Cidade('')
+            tabela2 = Cidade('')
         elif objeto == 'bairro':
-            tabela = Bairro('')
+            tabela2 = Bairro('')
         elif objeto == 'rua':
-            tabela = Rua('', '')
+            tabela2 = Rua('', '')
         elif objeto == 'endereco':
-            tabela = Endereco()
-
+            tabela2 = Endereco()
     return render_template('endereco_cadastro.html', objeto=objeto, table=tabela, tabela2=tabela2)
 
 
@@ -63,6 +62,12 @@ def cadastro(objeto, tabela=None, tabela2=None):
 def editar(objeto, id):
     string = objeto.capitalize()
     registro = DAO.buscar_por_criterio(globals()[string], pkey=id)
+    registro_pai = None
+    for r in registro.__dict_class__:
+        for k, v in r.items():
+            if '__dict__' in dir(v):
+                registro_pai = DAO.buscar_todos(globals()[v.__class__.__name__])
+
     hold = hash(frozenset(vars(registro).items()))
     if request.method == 'POST':
         for x in registro.dict_fieldname:
@@ -76,4 +81,4 @@ def editar(objeto, id):
             DAO.transacao(registro)
             flash('Alterações efetuadas com sucesso!')
         return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
-    return render_template('endereco_editar.html', registro=registro, objeto=objeto)
+    return render_template('endereco_editar.html', registro=registro, registro_pai=registro_pai, objeto=objeto)

@@ -1,0 +1,15 @@
+{% extends 'endereco_home.html' %}
+{% block title %}
+    Leal Challenge - Novo {{ objeto.capitalize() }}
+{% endblock %}
+{% block content %}
+    <h1>Novo {{ objeto.capitalize() }}</h1>
+    <form action="" method="post">
+        {% for foo in clazz.__dict_class__ %}
+            {% for k, v in foo.items() %}
+                <strong>{{ k.capitalize() }}</strong>
+                <input name="{{ k }}" id="{{ k.lower() }}" type="text" class="form-control">
+            {% endfor %}
+        {% endfor %}
+    </form>
+{% endblock %}

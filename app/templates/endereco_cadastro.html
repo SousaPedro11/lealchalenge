@@ -63,8 +63,8 @@
         </table>
     {% endblock %}
     <div class="btn-group">
-        <button href="#" class="btn-primary" type="button">
-            <a style="text-decoration: none; color: black" class="btn-link" href="#">Novo</a>
+        <button href="#" class="btn btn-primary" type="button">
+            <a style="text-decoration: none; color: black" class="btn-link" href="{{ url_for('endereco_bp.cadastro_novo', objeto=objeto) }}">Novo</a>
         </button>
     </div>
 {% endblock %}

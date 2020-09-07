@@ -1,4 +1,66 @@
 {% extends 'base.html' %}
+
 {% block title %}
     {{ super() }} - Enderecos
+{% endblock %}
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li class="divider" role="separator"></li>
+                    <li class="nav-item">
+                        <a class="navbar-link" href="{{ url_for('challenge_bp.home') }}">Home</a>
+                    </li>
+                    <li class="divider" role="separator"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Cadastrar
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='pais') }}">Pais</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='estado') }}">Estado</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='cidade') }}">Cidade</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='bairro') }}">Bairro</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='rua') }}">Rua</a>
+                            </li>
+                            <li>
+                                <a href="{{ url_for('endereco_bp.cadastro', objeto='endereco') }}">Endereço</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+{% block body %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <ul class=flashes>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+    {{ super() }}
 {% endblock %}

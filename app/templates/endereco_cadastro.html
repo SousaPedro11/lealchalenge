@@ -1,0 +1,46 @@
+{% extends 'endereco_home.html' %}
+{% block content %}
+    <h1>Cadastro {{ objeto.capitalize() }}</h1>
+    {% block tabela %}
+        <table class="table table-bordered">
+            {% if table|length > 0 %}
+                <thead>
+                <tr>
+                    {% for foo in table[0].__dict_class__ %}
+                        {% for k in foo.keys() %}
+                            <th>
+                                {{ k.upper() }}
+                            </th>
+                        {% endfor %}
+                    {% endfor %}
+                    <th>AÇÕES</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for foo in table %}
+                    <tr>
+                        {% for d in foo.__dict_class__ %}
+                            {% if d.values()|length>0 %}
+                                {% for v in d.values() %}
+                                    <td>
+                                        {% if v is not none %}
+                                            {{ v }}
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    <td>
+                        <a href="{{ url_for('endereco_bp.editar', objeto=foo.__class__.__name__.lower(), id=foo.pkey) }}" class="fa fa-pencil glyphicon glyphicon-pencil"></a>
+                        <a href="#" class="fa fa-trash glyphicon glyphicon-trash"></a>
+                    </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            {% else %}
+
+            {% endif %}
+        </table>
+    {% endblock %}
+{% endblock %}

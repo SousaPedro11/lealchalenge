@@ -1,0 +1,17 @@
+{% extends 'endereco_home.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% for foo in registro.__dict_class__ %}
+            {% for k in foo.keys() %}
+                <strong>{{ k.capitalize() }}</strong>
+                <input class="form-control" name="{{ k }}" id="{{ k.lower() }}" type="text" value="{{ foo[k] }}">
+            {% endfor %}
+        {% endfor %}
+        <div class="btn-group">
+            <input type="submit" value="Editar">
+            <a href="{{ request.referrer }}">
+                <input type="button" value="Cancelar">
+            </a>
+        </div>
+    </form>
+{% endblock %}

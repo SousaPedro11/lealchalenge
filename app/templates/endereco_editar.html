@@ -1,5 +1,9 @@
 {% extends 'endereco_home.html' %}
+{% block title %}
+    Leal Challenge - Editar {{ objeto.capitalize() }}
+{% endblock %}
 {% block content %}
+    <h1>Editar {{ objeto.capitalize() }}</h1>
     <form action="" method="post">
         {% for foo in registro.__dict_class__ %}
             {% for k, v in foo.items() %}

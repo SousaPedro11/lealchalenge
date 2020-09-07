@@ -36,7 +36,7 @@
                         <td>
                             <a href="{{ url_for('endereco_bp.editar', objeto=foo.__class__.__name__.lower(), id=foo.pkey) }}"
                                class="fa fa-pencil glyphicon glyphicon-pencil"></a>
-                            <a href="#" class="fa fa-trash glyphicon glyphicon-trash"></a>
+                            <a href="{{ url_for('endereco_bp.deletar', objeto=foo.__class__.__name__.lower(), id=foo.pkey) }}" class="fa fa-trash glyphicon glyphicon-trash"></a>
                         </td>
                     </tr>
                 {% endfor %}

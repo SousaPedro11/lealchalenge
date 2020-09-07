@@ -39,6 +39,7 @@ def buscar_todos_por_join(table1, table2, *order_by, **filtro):
 
 
 def deletar(objeto):
-    root_db.session.delete(objeto)
+    local_object = root_db.session.merge(objeto)
+    root_db.session.delete(local_object)
     root_db.session.commit()
     root_db.session.close()

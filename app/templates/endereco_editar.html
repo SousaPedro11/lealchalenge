@@ -2,15 +2,25 @@
 {% block content %}
     <form action="" method="post">
         {% for foo in registro.__dict_class__ %}
-            {% for k in foo.keys() %}
+            {% for k, v in foo.items() %}
                 <strong>{{ k.capitalize() }}</strong>
-                <input class="form-control" name="{{ k }}" id="{{ k.lower() }}" type="text" value="{{ foo[k] }}">
+                {% if v.__class__ != registro_pai[0].__class__ %}
+                    <input class="form-control" name="{{ k }}" id="{{ k.lower() }}" type="text" value="{{ v }}">
+                {% else %}
+                    <br>
+                    <select name="{{ k }}" id="{{ k }}">
+                    {% for foo in registro_pai %}
+                        <option value="{{ foo.pkey }}" {% if foo == v %}selected{% endif %}>{{ foo }}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                {% endif %}
             {% endfor %}
         {% endfor %}
         <div class="btn-group">
-            <input type="submit" value="Editar">
+            <input class="btn btn-success" type="submit" value="Editar">
             <a href="{{ request.referrer }}">
-                <input type="button" value="Cancelar">
+                <input class="btn btn-danger" type="button" value="Cancelar">
             </a>
         </div>
     </form>

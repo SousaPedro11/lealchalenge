@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ super() }} - Via Cep
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dracula.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/db.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Situação Problema</h1>
+    <p>Consumir a API viacep.</p>
+    <form method="get" action=".">
+        <label for="cep">Cep</label> <br>
+        <input class="form-control" type="text" name="cep" id="cep" size="10" maxlength="9"> <br>
+        <label for="rua">Rua</label> <br>
+        <input class="form-control" type="text" name="rua" id="rua" readonly> <br>
+        <label for="bairro">Bairro</label> <br>
+        <input type="text" class="form-control" name="bairro" id="bairro" readonly> <br>
+        <label for="cidade">Cidade</label> <br>
+        <input type="text" class="form-control" name="cidade" id="cidade" readonly> <br>
+        <label for="uf">Estado</label> <br>
+        <input type="text" class="form-control" name="uf" id="uf" readonly> <br>
+        <label for="ibge">IBGE</label> <br>
+        <input type="text" class="form-control" name="ibge" id="ibge" readonly> <br>
+    </form>
+    <a href="{{ url_for('challenge_bp.home') }}">
+        <button id="home" type="button"><< Voltar</button>
+    </a>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='js/viacep.js') }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}

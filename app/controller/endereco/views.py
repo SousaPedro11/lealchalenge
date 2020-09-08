@@ -147,6 +147,7 @@ def cadastro_novo(objeto):
                 flash(f'{clazz.__class__.__name__} já existe!')
                 return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
 
+        flash(f'{clazz.__class__.__name__} cadastrado com sucesso!')
         DAO.transacao(clazz)
         return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
     return render_template('endereco_cadastro_novo.html', objeto=objeto, clazz=clazz, parents=parents)

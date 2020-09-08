@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ super() }} - TSQL
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/styles/default.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dracula.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/db.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1>Situação Problema</h1>
+    <p>
+        O código T-SQL a seguir retornaria qual resultado, caso os valores das variáveis sejam: <br>
+        @gn_string = '5879'<br>
+        @nu_tamanho = 12
+    </p>
+    <div class="code">
+        <pre><code class="sql hjls">
+DECLARE
+@gn_string  VARCHAR(8000),
+@nu_tamanho SMALLINT
+            </code></pre>
+        <pre><code class="sql hjls">SELECT RIGHT(REPLICATE('0', @nu_tamanho) + @gn_string, @nu_tamanho)</code></pre>
+    </div>
+
+    <h2>Explicação</h2>
+    O RIGHT recebe 2 parâmetros: string e number_of_chars. Ele extrai caracteres de uma String começando pela direita.
+    <br>
+    O REPLICATE recebe 2 parâmetros: string e integer. Ele repete uma String um determinado número de vezes
+    <br>
+    <br>
+    Analisando a parte <strong>REPLICATE('0', @nu_tamanho) + @gn_string</strong>, temos 12 zeros (String) seguidos de '5879'.
+    <br>
+    Logo, o SELECT REPLICATE(string, @nu_tamanho) retorna 8 zeros (String) seguidos de '5879'. Tipo isso: <strong>'000000005879'</strong>
+    <br>
+    <a href="{{ url_for('challenge_bp.home') }}">
+        <button id="home" type="button"><< Voltar</button>
+    </a>
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.2/build/highlight.min.js"></script>
+    <script src="{{ url_for('static', filename='js/sql.js') }}"></script>
+{% endblock %}

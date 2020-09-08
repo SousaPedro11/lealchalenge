@@ -29,3 +29,7 @@
         </div>
     </form>
 {% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='js/nullable.js') }}"></script>
+{% endblock %}

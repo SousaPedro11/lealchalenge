@@ -120,6 +120,33 @@ def cadastro_novo(objeto):
     elif string == 'Endereco':
         clazz = Endereco()
 
+    parents = None
+    parent = None
+
+    for v in clazz.__mapper__.relationships.values():
+        retorno = v.back_populates
+        if retorno == f'{objeto}s' or retorno == f'{objeto}es':
+            parent = globals()[v.key.capitalize()]
+            parents = DAO.buscar_todos(parent)
+
+    if parents is not None:
+        if not (len(parents) > 0):
+            flash(f'{parent.__name__} ainda não registrado!')
+            return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
+
     if request.method == 'POST':
-        return redirect(url_for('enderco_bp.cadastro', objeto=objeto))
-    return render_template('endereco_cadastro_novo.html', objeto=objeto, clazz=clazz)
+        for x in clazz.dict_fieldname:
+            attr = clazz.dict_fieldname[x]
+            attr_val = request.form[x]
+            setattr(clazz, attr, attr_val)
+        clazzes = DAO.buscar_todos(clazz.__class__)
+        for c in clazzes:
+            teste = [getattr(clazz, clazz.dict_fieldname[x]) == getattr(c, c.dict_fieldname[x]) for x in
+                     clazz.dict_fieldname]
+            if sum(teste) == len(c.dict_fieldname):
+                flash(f'{clazz.__class__.__name__} já existe!')
+                return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
+
+        DAO.transacao(clazz)
+        return redirect(url_for('endereco_bp.cadastro', objeto=objeto))
+    return render_template('endereco_cadastro_novo.html', objeto=objeto, clazz=clazz, parents=parents)

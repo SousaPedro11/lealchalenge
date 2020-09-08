@@ -219,11 +219,11 @@ class Endereco(db.Model):
     @property
     def __dict_class__(self):
         return [
-            {'Número': self.tx_numero},
+            {'Numero': self.tx_numero},
             {'Complemento': self.tx_complemento},
             {'Rua': DAO.buscar_por_criterio(Rua, pkey=self.fk_rua)}
         ]
 
     @property
     def dict_fieldname(self):
-        return {'Número': 'tx_numero', 'Complemento': 'tx_complemento', 'Rua': 'fk_rua'}
+        return {'Numero': 'tx_numero', 'Complemento': 'tx_complemento', 'Rua': 'fk_rua'}
